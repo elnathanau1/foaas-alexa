@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: proj.eau
+---
+testFramework: kotlintest
+sourceLanguage: kotlin
