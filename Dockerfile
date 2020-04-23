@@ -12,11 +12,12 @@ FROM gradle:6.3-jdk8 as builder
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle build
+RUN ls build/
+RUN ls build/distributions
 
 FROM openjdk:10-jre-slim
 EXPOSE 8080
-RUN ls /home/gradle/src/
-COPY --from=builder /home/gradle/src/foaas-alexa/build/distributions/foaas-alexa.tar /app/
+COPY --from=builder /home/gradle/src/build/distributions/foaas-alexa-[0-9]*.[0-9]*.tar /app/foaas-alexa.tar
 WORKDIR /app
 RUN tar -xvf foaas-alexa.tar
 WORKDIR /app/foaas-alexa
