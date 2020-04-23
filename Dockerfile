@@ -15,6 +15,7 @@ RUN gradle build
 
 FROM openjdk:10-jre-slim
 EXPOSE 8080
+RUN ls /home/gradle/src/
 COPY --from=builder /home/gradle/src/foaas-alexa/build/distributions/foaas-alexa.tar /app/
 WORKDIR /app
 RUN tar -xvf foaas-alexa.tar
