@@ -7,7 +7,7 @@
 # CMD ["java", "-Dcom.sun.management.jmxremote", "-Xmx128m", "-XX:+IdleTuningGcOnIdle", "-Xtune:virtualized", "-jar", "foaas-alexa.jar"]
 
 # http://paulbakker.io/java/docker-gradle-multistage/
-FROM gradle:jdk10 as builder
+FROM gradle:6.3-jdk8 as builder
 
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
