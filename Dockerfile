@@ -11,4 +11,4 @@ COPY --from=builder /home/gradle/src/build/distributions/foaas-alexa-[0-9]*.[0-9
 WORKDIR /app
 RUN tar -xvf foaas-alexa.tar
 WORKDIR /app/foaas-alexa
-ENTRYPOINT ["bin/foaas-alexa"]
+CMD ['foaas-alexa']
