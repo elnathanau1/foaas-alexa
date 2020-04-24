@@ -3,7 +3,7 @@ FROM gradle:6.3-jdk8 as builder
 
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN gradle build --no-daemon
+RUN gradle build
 
 FROM openjdk:10-jre-slim
 EXPOSE 8080
@@ -11,4 +11,4 @@ COPY --from=builder /home/gradle/src/build/distributions/foaas-alexa-[0-9]*.[0-9
 WORKDIR /app
 RUN tar -xvf foaas-alexa.tar
 WORKDIR /app/foaas-alexa
-CMD ['foaas-alexa']
+CMD /app/foaas-alexa-[0-9]*.[0-9]*/bin/foaas-alexa
